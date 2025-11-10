@@ -1,7 +1,12 @@
 from machine import Pin
 import time
 
-btn = Pin(14, Pin.IN, Pin.PULL_DOWN)
+led_pin = Pin(20, Pin.OUT)
+btn = Pin(19, Pin.IN, pull=Pin.PULL_DOWN)
+
 while True:
-    if btn.value() == 1:
-        print("Button is in geclickt")
+    if btn.value():
+        led_pin.value(1)
+    else:
+        led_pin.value(0)
+    time.sleep(0.1)
